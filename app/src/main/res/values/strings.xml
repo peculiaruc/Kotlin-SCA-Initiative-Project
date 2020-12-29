@@ -25,4 +25,7 @@
     <string name="zero">0</string>
     <string name="full_stop">.</string>
     <string name="equals">=</string>
+    <string name="let_s_solve_some_arithmetic_together">Let\'s solve some arithmetic together!!!</string>
+    <string name="welcome">Welcome!</string>
+    <string name="level_1">Level 1</string>
 </resources>
