@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="twenty_dp">20dp</dimen>
+    <dimen name="maximum">50dp</dimen>
+    <dimen name="layout_marginRight">8dp</dimen>
+    <dimen name="standard">15dp</dimen>
 </resources>
