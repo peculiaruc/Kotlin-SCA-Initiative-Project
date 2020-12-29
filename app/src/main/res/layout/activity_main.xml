@@ -304,7 +304,7 @@
             style="?attr/buttonBarButtonStyle"
             android:layout_width="120dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="0dp"
+            android:layout_marginLeft="1dp"
             android:background="@color/purple"
             android:onClick="numberClicked"
             android:text="@string/zero"
@@ -322,21 +322,18 @@
             android:onClick="numberClicked"
             android:text="@string/full_stop"
             android:textColor="@color/white">
-
         </Button>
 
         <Button
             android:id="@+id/cal_ans"
             style="?attr/buttonBarButtonStyle"
-            android:layout_width="190dp"
+            android:layout_width="191dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/standard"
             android:background="@color/orange"
             android:onClick="equalTo"
             android:text="@string/equals"
             android:textColor="@color/white">
-
         </Button>
     </LinearLayout>
-
 </androidx.constraintlayout.widget.ConstraintLayout>
