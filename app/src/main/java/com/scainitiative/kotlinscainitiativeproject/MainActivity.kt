@@ -5,84 +5,88 @@ import android.os.Bundle
 import android.view.View
 import android.view.WindowManager
 import android.widget.Button
+import android.widget.EditText
+import android.widget.TextView
+import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
+import net.objecthunter.exp4j.ExpressionBuilder
+import java.lang.Exception
 
 class MainActivity : AppCompatActivity() {
-
-    var isOperator = true
-    var numbers = ""
-    var operators = "+"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         val w = window;
         w.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
-    }
 
-    fun numberClicked(view: View) {
-        if (isOperator)
-            displayEdittext.setText("")
-        isOperator = false
 
-        var buttonClicked  =  displayEdittext.text.toString()
-        var buttonSelected  =  view as Button
-        when(buttonSelected.id){
+        btn00.setOnClickListener { appendOnClick(true, "00") }
+        btn0.setOnClickListener { appendOnClick(true, "0") }
+        btn1.setOnClickListener { appendOnClick(true, "1") }
+        btn2.setOnClickListener { appendOnClick(true, "2") }
+        btn3.setOnClickListener { appendOnClick(true, "3") }
+        btn4.setOnClickListener { appendOnClick(true, "4") }
+        btn5.setOnClickListener { appendOnClick(true, "5") }
+        btn6.setOnClickListener { appendOnClick(true, "6") }
+        btn7.setOnClickListener { appendOnClick(true, "7") }
+        btn8.setOnClickListener { appendOnClick(true, "8") }
+        btn9.setOnClickListener { appendOnClick(true, "9") }
+        btnDot.setOnClickListener { appendOnClick(true, ".") }
 
-            cal_one.id -> {buttonClicked  += "1"}
-            cal_two.id -> {buttonClicked  += "2"}
-            cal_three.id -> {buttonClicked  += "3"}
-            cal_four.id -> {buttonClicked  += "4"}
-            cal_five.id -> {buttonClicked  += "5"}
-            cal_six.id -> {buttonClicked  += "6"}
-            cal_seven.id -> {buttonClicked  += "7"}
-            cal_eight.id -> {buttonClicked  += "8"}
-            cal_nine.id -> {buttonClicked  += "9"}
-            cal_zero.id -> {buttonClicked  += "0"}
-            cal_full_stop.id -> {buttonClicked  +=  "."}
-            cal_add_minus.id -> {buttonClicked  + "-$buttonClicked"}
 
-        }
-        displayEdittext.setText(buttonClicked)
+        //Operator Listeners
+        btnPlus.setOnClickListener { appendOnClick(false, "+") }
+        btnMinus.setOnClickListener { appendOnClick(false, "-") }
+        btnMultiply.setOnClickListener { appendOnClick(false, "*") }
+        btnDivide.setOnClickListener { appendOnClick(false, "/") }
+        btnLeftB.setOnClickListener { appendOnClick(false, "(") }
+        btnRightB.setOnClickListener { appendOnClick(false, ")") }
 
-    }
 
-    fun signOperation(view: View) {
-        isOperator = true
-        numbers = displayEdittext.text.toString()
-        var buttonSelected = view as Button
-        when (buttonSelected.id){
-            cal_minus.id -> operators = "-"
-            cal_divide.id -> operators = "/"
-            cal_multiply.id -> operators = "*"
-            cal_plus.id -> operators = "+"
+        btnClear.setOnClickListener {
+            clear()
         }
 
-
-    }
-
-    fun equalTo(view: View) {
-        var anumber = displayEdittext.text.toString()
-        var result = 0.0
-        when (operators){
-            "+" -> {result = numbers.toDouble() + anumber.toDouble()}
-            "*" -> {result = numbers.toDouble() * anumber.toDouble()}
-            "-" -> {result = numbers.toDouble() - anumber.toDouble()}
-            "/" -> {result = numbers.toDouble() / anumber.toDouble()}
+        btnEqual.setOnClickListener {
+            calculate()
         }
-        displayEdittext.setText(result.toString())
 
     }
 
-    fun clear(view: View) {
-        displayEdittext.setText("0")
-        isOperator = true
+    private fun appendOnClick(clear: Boolean, string: String) {
+
+        if (clear) {
+            tvOutput.text = ""
+            tvInput.append(string)
+        } else {
+            tvInput.append(tvOutput.text)
+            tvInput.append(string)
+            tvOutput.text = ""
+        }
     }
 
-    fun percentage(view: View) {
-        var num = displayEdittext.text.toString().toDouble()/100
-        displayEdittext.setText(num.toString())
-        isOperator = true
+    private fun clear() {
+        tvInput.text = ""
+        tvOutput.text = ""
 
+    }
+
+    private fun calculate() {
+
+        try {
+
+            val input = ExpressionBuilder(tvInput.text.toString()).build()
+            val output = input.evaluate()
+            val longOutput = output.toLong()
+            if (output == longOutput.toDouble()){
+                tvOutput.text = longOutput.toString()
+            }else{
+                tvOutput.text = output.toString()
+            }
+
+        }catch (e:Exception){
+            Toast.makeText(this@MainActivity,e.message, Toast.LENGTH_LONG).show()
+        }
     }
 }
