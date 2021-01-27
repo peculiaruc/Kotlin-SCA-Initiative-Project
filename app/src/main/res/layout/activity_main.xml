@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -7,62 +8,16 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_weight="1"
-        android:fontFamily="@font/work_sans_bold"
-        android:gravity="center"
-        android:text="Level Up!"
-        android:textColor="@android:color/black"
-        android:textSize="20sp"
-        android:textStyle="bold" />
 
-    <RelativeLayout
+    <fragment
+        android:id="@+id/fragment"
+        android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_weight="1">
-
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="left"
-            android:layout_marginHorizontal="20dp"
-            android:layout_alignParentLeft="true"
-            android:src="@drawable/ribbon" />
-
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="200dp"
-        android:layout_centerInParent="true"
-        android:layout_gravity="center"
-        android:src="@drawable/badge" />
-
-    </RelativeLayout>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:gravity="center"
-        android:textColor="@android:color/black"
-        android:layout_gravity="center"
-        android:textSize="25sp"
-        android:fontFamily="@font/work_sans_bold"
-        android:text="Level 2" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_weight="1"
-        android:textStyle="bold"
-        android:textColor="@android:color/darker_gray"
-        android:fontFamily="@font/open_sans_bold"
-        android:gravity="center"
-        android:layout_marginHorizontal="20dp"
-        android:text="Congratulations!!!\n\n On making it this far, just keep the fire burning\nKindly clear up this screen to start your task" />
-
-
-</LinearLayout>
+        android:layout_height="match_parent"
+        app:defaultNavHost="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:navGraph="@navigation/nav_graph" />
+</androidx.constraintlayout.widget.ConstraintLayout>
