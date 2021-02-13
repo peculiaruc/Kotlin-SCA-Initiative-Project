@@ -4,12 +4,15 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.NavDirections
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.scainitiative.kotlinscainitiativeproject.R
 import com.scainitiative.kotlinscainitiativeproject.db.Notedb
+import com.scainitiative.kotlinscainitiativeproject.model.Note
 import com.scainitiative.kotlinscainitiativeproject.view.BaseFragment
 import kotlinx.android.synthetic.main.fragment_home.*
+import kotlinx.android.synthetic.main.list_item_notes.*
 import kotlinx.coroutines.launch
 
 
@@ -42,4 +45,8 @@ class HomeFragment : BaseFragment() {
             Navigation.findNavController(it).navigate(action)
         }
     }
+}
+
+fun HomeFragmentDirections.Companion.actionAddNote(): NavDirections {
+    TODO("Not yet implemented")
 }
